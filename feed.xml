@@ -1,0 +1,777 @@
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.3">Jekyll</generator><link href="/jekyll-theme-yat/feed.xml" rel="self" type="application/atom+xml" /><link href="/jekyll-theme-yat/" rel="alternate" type="text/html" /><updated>2024-01-07T06:55:31+00:00</updated><id>/jekyll-theme-yat/feed.xml</id><title type="html">니리테의 공부일지</title><subtitle>&quot;니리테의 공부일지 - Coding, math, etc.&quot;</subtitle><author><name>니리테</name></author><entry><title type="html">확률과 통계 - 1</title><link href="/jekyll-theme-yat/%ED%99%95%EB%A5%A0%EA%B3%BC%20%ED%86%B5%EA%B3%84%20%EB%A7%9B%EB%B3%B4%EA%B8%B0/2024/01/06/%ED%99%95%EB%A5%A0%EA%B3%BC-%ED%86%B5%EA%B3%84-(1).html" rel="alternate" type="text/html" title="확률과 통계 - 1" /><published>2024-01-06T00:00:00+00:00</published><updated>2024-01-06T00:00:00+00:00</updated><id>/jekyll-theme-yat/%ED%99%95%EB%A5%A0%EA%B3%BC%20%ED%86%B5%EA%B3%84%20%EB%A7%9B%EB%B3%B4%EA%B8%B0/2024/01/06/%ED%99%95%EB%A5%A0%EA%B3%BC-%ED%86%B5%EA%B3%84-(1)</id><content type="html" xml:base="/jekyll-theme-yat/%ED%99%95%EB%A5%A0%EA%B3%BC%20%ED%86%B5%EA%B3%84%20%EB%A7%9B%EB%B3%B4%EA%B8%B0/2024/01/06/%ED%99%95%EB%A5%A0%EA%B3%BC-%ED%86%B5%EA%B3%84-(1).html"><![CDATA[<h2 id="1-1-overview-of-probability">1-1: Overview of Probability</h2>
+
+<p>확률 이론이란, “불확실성”을 다루는 수학의 한 분야이다.</p>
+
+<p>Random Experiment = 확률 실험</p>
+
+<ul>
+  <li>확률 실험이란, 해당 결과가 “확실하게” 예측되지 않는 실험이다.</li>
+  <li>Probability == 확률: 결과가 발생할 기회, 혹은 가능성</li>
+</ul>
+
+<p>이러한 확률에는 크게 3가지의 접근이 있다.</p>
+
+<ol>
+  <li>Classical Approach = 실험에 유한한 수의 “동일한 가능성”의 결과를 가정한다. (동전 던지기 등.)</li>
+  <li>Frequency Approach = 기존의 Classical Approach는 주위의 모든 상황을 제대로 표현해주지 못한다. 예를 들어, 비행기가 추락할 확률을 구하는 것에 있어, 단순히 1/2로 나타내는 것은 현실적으로 맞지 않는다! 이러한, 이유로, 우리는 이를 Empirical Data, 즉 경험적 자료를 통해 상대적 빈도수를 통해 표현한다.</li>
+  <li>Subjective Approach = 또한, 우리는 “믿음”으로써 확률을 정의할 수 있다. 예를 들어, “이 환자는 적절한 치료를 받았을 때 30%의 확률로 회복할 수 있습니다”라고 숙련된 의사가 말했을 때, 이는 사건이 발생할 가능성에 대한 믿음을 언급한 것이다. 이는 “베이지안 추론”으로 연결될 수 있으며, 이는 추론 대상의 사전 확률과 추가적인 정보를 통해 대상의 사후 확률을 추론, 업데이트하는 방식이다.</li>
+</ol>
+
+<p>하지만, 우리는 이러한 개념적인 어려움을 피하기 위해, 확률을 공리적으로 정의하기로 한다. 즉, 확률은 “Set Theory”, 즉 집합론에 의거하여 이론적으로 정의된다.</p>
+
+<h2 id="1-2-set-theory">1-2: Set Theory</h2>
+<p>아… 집합론…! 추후 다룰 수도 있는 이산수학에서 교수님께서 입이 닳으시도록 강조하셨던 것이 바로 집합이다. 명제와 술어, 그리고 구조와 각종 Computability에 관한 개념까지 모조리 집합으로 다루셨는데… 이건 기회가 된다면 기록해보도록 하겠다.</p>
+
+<p>Set, 집합이란 “Well Defined” 된 대상들, 즉 원소들의 모임이다. 만약 A가 집합이고, x가 A의 원소라면, 우리는 x∈A로 표현한다. 확률 실험에서 시행할 때마다 가능한 Results가 발생할 것이고, 우리는 이를 Outcomes, 결과라고 부른다. 이러한 결과들의 집합을 Sample Space, 표본공간이라고 부르며, 특별히 S 라는 기호로 작성합니다. Event란, 표본공간의 부분집합으로, 사건이라고 부릅니다. 모든 사건은 표본공간이 되며, 우리는 주로 사건의 확률에 대해 공부를 합니다.</p>
+
+<p>Countable Set == 가산 집합: 유한한 원소를 가지고 있거나, 혹은 자연수와 일대일 대응이 가능한 수의 원소들로 이루어진 집합 (하하 이산수학 날 살려줘요)</p>
+
+<h3 id="집합의-basic-operation-based-on-boolean-algebra">집합의 Basic Operation (Based on Boolean Algebra)</h3>
+
+<ul>
+  <li>Subset/Superset: A ⊂ B if x ∈ A then x ∈ B –&gt; A는 B의 부분집합, B는 A의 초집합. (A≠B인 경우 A는 B의 진부분집합이다.)</li>
+  <li>Union(합집합) == A ⋃ B: Consisting of all elements which are in A or in B or in both A and B (Either A or B)</li>
+  <li>Intersection(교집합) == A ∩ B: Consisting of all elements that are common to both A and B (Both A and B)</li>
+  <li>Complement(여집합) == A<sup>c</sup>: Opposite event, which consists of elements that are not members of A</li>
+  <li>Difference(차집합) == A - B: Consisting of those elements which are in A but not in B</li>
+  <li>Empty Set(공집합) == Ø: Contains no element</li>
+  <li>Disjoint or Mutually Exclusive: We say A and B disjoint if A ∩ B = Ø</li>
+  <li>Pairwise Disjoint == The events A1, A2…. An are pairwise disjoint if Ai ∩ Aj = Ø for all i≠j</li>
+</ul>
+
+<h3 id="some-facts-about-a-b-ｓ">Some facts about A, B ⊂Ｓ</h3>
+<ul>
+  <li>(A ∩ B) ⊂ A, B / A, B ⊂ (A ∪ B)</li>
+  <li>if A ⊂ B, then (A ∩ B) = A and (A ∪ B) = B</li>
+  <li>if (A - B) ⊂ A, then A - B = A - (A ∩ B)</li>
+</ul>
+
+<h3 id="theorem-for-any-sets-a-b-c-we-have--">Theorem: For any sets A, B, C, we have -</h3>
+<ol>
+  <li>Commutative(교환법칙): A ∪ B = B ∪ A, A ∩ B = B ∩ A</li>
+  <li>Associative(결합법칙): (A ∪ B) ∪ C = A ∪ (B ∪ C) // (A ∩ B) ∩ C = A ∩ (B ∩ C)</li>
+  <li>Distributivity(분배법칙): A ∩ (B ∪ C) = (A ∩ B) ∪ (A ∩ C) // A ∪ (B ∩ C) = (A ∪ B) ∩ (A ∪ C)</li>
+  <li>De Morgan’s Law: (A ∩ B)<sup>c</sup> = A<sup>c</sup> ∪ B<sup>c</sup> // (A∪B)<sup>c</sup> = A<sup>c</sup> ∩ B<sup>c</sup></li>
+</ol>
+
+<h3 id="inequalities">Inequalities</h3>
+<ol>
+  <li>P(A ∪ B) ≤ P(A) + P(B)</li>
+  <li>P(A1 ∪ A2 ∪ A3 ∪…….∪ An) ≤ ∑(i=1 to n) P(Ai)</li>
+  <li>P(A ∩ B) ≥ P(A) + P(B) - 1</li>
+  <li>P(A1 ∩ A2 ∩ A3 ∩…….∩ An) ≥ P(A1) + P(A2) +… P(An) - (n-1)
+  Inequalities 1 &amp; 2 = Boole’s inequality // Inequalities 3 &amp; 4 = Bonferroni’s inequality</li>
+</ol>
+
+<h3 id="basic-principles-of-probability">Basic Principles of Probability</h3>
+<ol>
+  <li>확률은 0과 1 사이의 값을 갖는다. 불가능한 사건은 0의 확률을 가지고, 특정 사건(표본 공간)의 경우에는 1의 확률을 갖는다.</li>
+  <li>두 사건이 “서로소 집합(disjoint)”할 때는, 두 사건의 확률은 더할 수 있다. 이는 셀 수 있는 모든 서로소 집합들 사이에서도 성립한다.</li>
+  <li>Sigma-Algebra: В를 표본 공간 S의 부분집합들의 모음이라고 할 때, 우리는 이러한 B를 σ-algebra 혹은 σ-field라고 한다. 이러한 B는 세 가지 성질을 가진다. 첫째, B는 Ø를 원소로 갖는다. 둘째, if A∈B, then A<sup>c</sup>∈B. 셋째, if A1, A2, A3…∈B, then ∪(i=1 to ∞) Ai∈B.</li>
+</ol>
+
+<h3 id="kolgomorov-axioms">Kolgomorov Axioms</h3>
+<p>표본 공간 S와 σ-algebra B가 주어졌을 때, B에 정의된 집합 함수 P는 아래 3가지 성질을 만족할 때 “확률”이라고 불린다(iff).</p>
+
+<ol>
+  <li>P(A) ≥ 0 for all A ∈ B (Nonnegativity)</li>
+  <li>Total Probability: P(S) = 1</li>
+  <li>If A1, A2…. are mutually exclusive, then P(∪(i=1 to ∞) Ai) = Σ(i=1 to ∞) P(Ai) (Countable Additivity)</li>
+</ol>
+
+<p>측도론(Measure Theory)에서는, 이러한 쌍(S, B)을 가측공간(Measurable Space)이라고 하며, B의 원소들을 가측집합(Measurable Sets)이라고 한다. 세짝(triple) (S, B, P)는 확률 공간이라고 부른다.</p>
+
+<p>오늘은 확률의 개괄과 이를 더 면밀하게 정의하기 위해 집합과 Boolean Algebra를 이용하여 확률이 정의되는 공리계와 이에 따른 정의를 알아봤습니다. 아무래도, 아직은 Text Book에 있는 내용들을 중심으로 작성한 거라 대부분이 줄글로 나열되어 있는 형태로 글을 작성하였는데, 이게 아마 다음 연재들까지는 이렇게 진행 될 것 같습니다. 그 이후부터는 이항분포와 푸아송 분포와 같은 다양한 분포의 평균을 구하고, 적률 생성 함수와 3M 부분을 다루므로, 아마 아이패드 필기를 옮겨오거나, 수식을 이미지 파일로 옮겨오겠군요. 수식들이 정말 넘쳐나는데, 어떻게 할지는 좀 고민을 해봐야 할 것 같습니다. 아무쪼록 감사합니다.</p>]]></content><author><name>니리테</name></author><category term="확률과 통계 맛보기" /><category term="통계학" /><category term="전산수학2" /><summary type="html"><![CDATA[1-1: Overview of Probability]]></summary></entry><entry><title type="html">확률과 통계 OT</title><link href="/jekyll-theme-yat/%ED%99%95%EB%A5%A0%EA%B3%BC%20%ED%86%B5%EA%B3%84%20%EB%A7%9B%EB%B3%B4%EA%B8%B0/2024/01/05/%ED%99%95%EB%A5%A0%EA%B3%BC-%ED%86%B5%EA%B3%84-%EB%A7%9B%EB%B3%B4%EA%B8%B0.html" rel="alternate" type="text/html" title="확률과 통계 OT" /><published>2024-01-05T00:00:00+00:00</published><updated>2024-01-05T00:00:00+00:00</updated><id>/jekyll-theme-yat/%ED%99%95%EB%A5%A0%EA%B3%BC%20%ED%86%B5%EA%B3%84%20%EB%A7%9B%EB%B3%B4%EA%B8%B0/2024/01/05/%ED%99%95%EB%A5%A0%EA%B3%BC-%ED%86%B5%EA%B3%84-%EB%A7%9B%EB%B3%B4%EA%B8%B0</id><content type="html" xml:base="/jekyll-theme-yat/%ED%99%95%EB%A5%A0%EA%B3%BC%20%ED%86%B5%EA%B3%84%20%EB%A7%9B%EB%B3%B4%EA%B8%B0/2024/01/05/%ED%99%95%EB%A5%A0%EA%B3%BC-%ED%86%B5%EA%B3%84-%EB%A7%9B%EB%B3%B4%EA%B8%B0.html"><![CDATA[<h2 id="확률과-통계-맛보기">확률과 통계 맛보기</h2>
+
+<p>해당 시리즈에 들어가기에 앞서, 확률과 통계 맛보기 시리즈를 하는 이유를 간략하게 설명드리자면, 
+전산 수학이라는 분야가 컴퓨터 과학에서 얼마나 많은 부분을 차지하고 있는지, 
+그리고 그 Application이 얼마나 강력한지 아직 가늠이 되지 않기에, 
+이러한 공부가 저한테 어느 정도의 가치가 있는지 알아보고자
+확률과 통계 부분에 관한 개념을 기록하기 위해 <확률과 통계="" 맛보기="">시리즈를 계획하게 되었습니다. 
+아무쪼록 최대한 연재해보도록 하겠습니다.</확률과></p>
+
+<p>저는 고등학교 과정에서의 확률과 통계를 별로 좋아하지 않았던 기억이 있습니다. 
+아무래도 노가다성(?)이 강하고, 별로 크게 와닿는 부분이 없었기 때문입니다. 
+허나, 대학교 1학년 과정에서, 물론 전체 학문에서 보자면 너무나도 작은 부분을 할당받고 있지만,
+확률 분포와 그 변환의 과정에서 마치 퍼즐 조각을 맞추는 것과 같은 식의 유도 과정이 매우 흥미롭게 다가왔습니다. 
+물론, 이론적 바탕이 부실하거나 정확한 유도과정이 아닐 수도 있지만, 
+그냥… 기록하기 위함의 성격이 강하다 보니 너그러이 넘어가주세요.</p>]]></content><author><name>니리테</name></author><category term="확률과 통계 맛보기" /><category term="통계학" /><category term="전산수학2" /><summary type="html"><![CDATA[확률과 통계 맛보기]]></summary></entry><entry><title type="html">test post</title><link href="/jekyll-theme-yat/tester/2023/12/25/test.html" rel="alternate" type="text/html" title="test post" /><published>2023-12-25T00:00:00+00:00</published><updated>2023-12-25T00:00:00+00:00</updated><id>/jekyll-theme-yat/tester/2023/12/25/test</id><content type="html" xml:base="/jekyll-theme-yat/tester/2023/12/25/test.html"><![CDATA[<p>이것은 테스트 포스트입니다</p>]]></content><author><name>니리테</name></author><category term="tester" /><summary type="html"><![CDATA[이것은 테스트 포스트입니다]]></summary></entry><entry><title type="html">An exhibit of Markdown</title><link href="/jekyll-theme-yat/markdown/2018/12/05/an-exhibit-of-markdown.html" rel="alternate" type="text/html" title="An exhibit of Markdown" /><published>2018-12-05T00:00:00+00:00</published><updated>2018-12-05T00:00:00+00:00</updated><id>/jekyll-theme-yat/markdown/2018/12/05/an-exhibit-of-markdown</id><content type="html" xml:base="/jekyll-theme-yat/markdown/2018/12/05/an-exhibit-of-markdown.html"><![CDATA[<p>This note demonstrates some of what <a href="https://daringfireball.net/projects/markdown/">Markdown</a> is capable of doing.</p>
+
+<h2 id="an-exhibit-of-markdown">An exhibit of Markdown</h2>
+
+<p><em>Note: Feel free to play with this page. Unlike regular notes, this doesn’t automatically save itself.</em></p>
+
+<h2 id="basic-formatting">Basic formatting</h2>
+
+<p>Paragraphs can be written like so. A paragraph is the basic block of Markdown. A paragraph is what text will turn into when there is no reason it should become anything else.</p>
+
+<p>Paragraphs must be separated by a blank line. Basic formatting of <em>italics</em> and <strong>bold</strong> is supported. This <em>can be <strong>nested</strong> like</em> so.</p>
+
+<h2 id="lists">Lists</h2>
+
+<h3 id="ordered-list">Ordered list</h3>
+
+<ol>
+  <li>Item 1</li>
+  <li>A second item</li>
+  <li>Number 3</li>
+  <li>Ⅳ</li>
+</ol>
+
+<p><em>Note: the fourth item uses the Unicode character for <a href="https://www.fileformat.info/info/unicode/char/2163/index.htm">Roman numeral four</a>.</em></p>
+
+<h3 id="unordered-list">Unordered list</h3>
+
+<ul>
+  <li>An item</li>
+  <li>Another item</li>
+  <li>Yet another item</li>
+  <li>And there’s more…</li>
+</ul>
+
+<h2 id="paragraph-modifiers">Paragraph modifiers</h2>
+
+<h3 id="code-block">Code block</h3>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Code blocks are very useful for developers and other people who look at code or other things that are written in plain text. As you can see, it uses a fixed-width font.
+</code></pre></div></div>
+
+<p>You can also make <code class="language-plaintext highlighter-rouge">inline code</code> to add code into other things.</p>
+
+<h3 id="quote">Quote</h3>
+
+<blockquote>
+  <p>Here is a quote. What this is should be self explanatory. Quotes are automatically indented when they are used.</p>
+</blockquote>
+
+<h2 id="headings">Headings</h2>
+
+<p>There are six levels of headings. They correspond with the six levels of HTML headings. You’ve probably noticed them already in the page. Each level down uses one more hash character.</p>
+
+<h3 id="headings-can-also-contain-formatting">Headings <em>can</em> also contain <strong>formatting</strong></h3>
+
+<h3 id="they-can-even-contain-inline-code">They can even contain <code class="language-plaintext highlighter-rouge">inline code</code></h3>
+
+<p>Of course, demonstrating what headings look like messes up the structure of the page.</p>
+
+<p>I don’t recommend using more than three or four levels of headings here, because, when you’re smallest heading isn’t too small, and you’re largest heading isn’t too big, and you want each size up to look noticeably larger and more important, there there are only so many sizes that you can use.</p>
+
+<h2 id="urls">URLs</h2>
+
+<p>URLs can be made in a handful of ways:</p>
+
+<ul>
+  <li>A named link to <a href="https://www.markitdown.net/">MarkItDown</a>. The easiest way to do these is to select what you want to make a link and hit <code class="language-plaintext highlighter-rouge">Ctrl+L</code>.</li>
+  <li>Another named link to <a href="https://www.markitdown.net/">MarkItDown</a></li>
+  <li>Sometimes you just want a URL like <a href="https://www.markitdown.net/">https://www.markitdown.net/</a>.</li>
+</ul>
+
+<h2 id="horizontal-rule">Horizontal rule</h2>
+
+<p>A horizontal rule is a line that goes across the middle of the page.</p>
+
+<hr />
+
+<p>It’s sometimes handy for breaking things up.</p>
+
+<h2 id="images">Images</h2>
+
+<p>Markdown can also contain images. I’ll need to add something here sometime.</p>
+
+<h2 id="finally">Finally</h2>
+
+<p>There’s actually a lot more to Markdown than this. See the official <a href="https://daringfireball.net/projects/markdown/basics">introduction</a> and <a href="https://daringfireball.net/projects/markdown/syntax">syntax</a> for more information. However, be aware that this is not using the official implementation, and this might work subtly differently in some of the little things.</p>]]></content><author><name>니리테</name></author><category term="markdown" /><category term="example" /><category term="markdown" /><summary type="html"><![CDATA[This note demonstrates some of what Markdown is capable of doing.]]></summary></entry><entry><title type="html">Mathjax Test</title><link href="/jekyll-theme-yat/markdown/2018/05/26/mathjax-test.html" rel="alternate" type="text/html" title="Mathjax Test" /><published>2018-05-26T00:00:00+00:00</published><updated>2018-05-26T00:00:00+00:00</updated><id>/jekyll-theme-yat/markdown/2018/05/26/mathjax-test</id><content type="html" xml:base="/jekyll-theme-yat/markdown/2018/05/26/mathjax-test.html"><![CDATA[<ul>
+  <li>A safe integer is an integer that
+    <ul>
+      <li>can be exactly represented as an IEEE-754 double precision number, and</li>
+      <li>whose IEEE-75 representation cannot be the result of rounding any other integer to fit the IEEE-754 representation</li>
+    </ul>
+  </li>
+  <li>For example, $ 2 ^ {53} - 1 $ is a safe integer,
+    <ul>
+      <li>it can be exactly represented</li>
+    </ul>
+  </li>
+</ul>]]></content><author><name>니리테</name></author><category term="markdown" /><category term="test" /><summary type="html"><![CDATA[A safe integer is an integer that can be exactly represented as an IEEE-754 double precision number, and whose IEEE-75 representation cannot be the result of rounding any other integer to fit the IEEE-754 representation For example, $ 2 ^ {53} - 1 $ is a safe integer, it can be exactly represented]]></summary></entry><entry><title type="html">Video example</title><link href="/jekyll-theme-yat/example/2017/12/18/video-example.html" rel="alternate" type="text/html" title="Video example" /><published>2017-12-18T00:00:00+00:00</published><updated>2017-12-18T00:00:00+00:00</updated><id>/jekyll-theme-yat/example/2017/12/18/video-example</id><content type="html" xml:base="/jekyll-theme-yat/example/2017/12/18/video-example.html"><![CDATA[<h2 id="canon-in-d-pachelbels-canon---cello--piano-best-wedding-version">Canon in D (Pachelbel’s Canon) - Cello &amp; Piano [BEST WEDDING VERSION]</h2>
+<p>Some of you know that we occasionally play for weddings. As you can imagine, we get a LOT of requests for Canon in D, and we discovered that there were no good arrangements available anywhere for piano and cello! Hard to believe given its popularity. So we decided to make our own! We tried to stick as closely to the original as possible (which was written for three violins and basso continuo), and we performed it <em>not</em> at a snail’s pace so the bride can actually make it down the aisle without putting everyone to sleep. 🙊(Yeah, we said it! Nobody likes a slow processional!) Also, the number one complaint about this piece from cellists is always how booooring it is to play because they literally have to play the same 8 bass notes over and over for the entire piece. Problem solved with this arrangement because the cello never has to play the bass! 🙌(The piano does, but we get lots of other fun stuff too so it’s ok!) So for all you musicians out there playing weddings, we hope you enjoy playing this arrangement a little more than the ones you were used to…You can get it from www.musicnotes.com. 😊Be sure to let us know in the comments if you do!</p>
+
+<p><img src="//www.youtube.com/watch?v=Ptk_1Dc2iPY" alt="" /></p>
+
+<h2 id="gucci-hallucination--the-line-animation--gucci">GUCCI HALLUCINATION / THE LINE ANIMATION / GUCCI</h2>
+<p>BACKGROUND /</p>
+
+<p>Gucci share their creative vision through a series of surreal animated paintings by acclaimed artist Ignasi Monreal and The Line Animation studio. The animations make up part of a larger campaign shared via social media, above the line and print.</p>
+
+<p>APPROACH /</p>
+
+<p>Our aim was to ground and accentuate the outlandish scenarios with ambient sound design. Neither proclaiming to be positive or negative, the sound conveys a sense of the uncanny and leaves the audience with nothing but their own interpretations. their creative vision through a series of surreal animated paintings by acclaimed artist Ignasi Monreal and The Line Animation studio. The animations make up part of a larger campaign shared via social media, above the line and print.</p>
+
+<p><img src="https://vimeo.com/263856289" alt="" /></p>
+
+<h2 id="finneas-demos-how-he-builds-songs-for-billie-eilish">FINNEAS Demos How He Builds Songs For Billie Eilish</h2>
+<p>Grammy Award-winning musician and producer FINNEAS sits down with Pitchfork and closely examines his creative process while working on some of the biggest hit songs of the past couple years. FINNEAS explores the sounds that brought upon 
+some of his greatest musical breakthroughs in songs such as bad guy, bury a friend, ocean eyes, when the party’s over, I Lost a Friend, Used to This and much more.</p>
+
+<p><img src="https://dai.ly/x7tgcev" alt="" /></p>
+
+<h2 id="2019-bmw-vision-m-next-concept-hd">2019 BMW Vision M NEXT Concept (HD)</h2>
+
+<p>In future, drivers will be able to choose whether they wish to be driven or do the driving themselves. With the BMW Vision M NEXT, the BMW Group is revealing its take on how driving pleasure might look in future. It offers a foretaste of the BMW M brand’s electrified future by placing the focus squarely on the actively engaged driver. Intelligent technologies provide comprehensive yet carefully targeted assistance to turn them into the ultimate driver.</p>
+
+<p><img src="https://www.dailymotion.com/video/x7bur2y" alt="" /></p>
+
+<h2 id="this-is-the-poster-image">This is the poster image</h2>
+<p>In modern browsers, adding a video to your page is as easy as adding an image. No longer do you need to deal with special plug-ins or require crazy markup, you can do it with a single element.
+<img src="//www.html5rocks.com/en/tutorials/video/basics/devstories.webm" alt="video" /></p>]]></content><author><name>니리테</name></author><category term="example" /><category term="video" /><summary type="html"><![CDATA[Canon in D (Pachelbel’s Canon) - Cello &amp; Piano [BEST WEDDING VERSION] Some of you know that we occasionally play for weddings. As you can imagine, we get a LOT of requests for Canon in D, and we discovered that there were no good arrangements available anywhere for piano and cello! Hard to believe given its popularity. So we decided to make our own! We tried to stick as closely to the original as possible (which was written for three violins and basso continuo), and we performed it not at a snail’s pace so the bride can actually make it down the aisle without putting everyone to sleep. 🙊(Yeah, we said it! Nobody likes a slow processional!) Also, the number one complaint about this piece from cellists is always how booooring it is to play because they literally have to play the same 8 bass notes over and over for the entire piece. Problem solved with this arrangement because the cello never has to play the bass! 🙌(The piano does, but we get lots of other fun stuff too so it’s ok!) So for all you musicians out there playing weddings, we hope you enjoy playing this arrangement a little more than the ones you were used to…You can get it from www.musicnotes.com. 😊Be sure to let us know in the comments if you do!]]></summary></entry><entry><title type="html">Table example</title><link href="/jekyll-theme-yat/example/2017/12/15/table-example.html" rel="alternate" type="text/html" title="Table example" /><published>2017-12-15T00:00:00+00:00</published><updated>2017-12-15T00:00:00+00:00</updated><id>/jekyll-theme-yat/example/2017/12/15/table-example</id><content type="html" xml:base="/jekyll-theme-yat/example/2017/12/15/table-example.html"><![CDATA[<h2 id="table-example-as-below">Table example as below</h2>
+
+<p><strong>For now, these extended features are provided:</strong></p>
+
+<ul>
+  <li>Cells spanning multiple columns</li>
+  <li>Cells spanning multiple rows</li>
+  <li>Cells text align separately</li>
+  <li>Table header not required</li>
+  <li>Grouped table header rows or data rows</li>
+</ul>
+
+<h3 id="rowspan-and-colspan">Rowspan and Colspan</h3>
+<p>^^ in a cell indicates it should be merged with the cell above.<br />
+This feature is contributed by <a href="https://github.com/pmccloghrylaing">pmccloghrylaing</a>.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: right">Stage</th>
+      <th style="text-align: right">Direct Products</th>
+      <th style="text-align: right">ATP Yields</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: right">Glycolysis</td>
+      <td style="text-align: right">2 ATP                   |</td>
+      <td style="text-align: right"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: right">^^</td>
+      <td style="text-align: right">2 NADH</td>
+      <td style="text-align: right">3–5 ATP</td>
+    </tr>
+    <tr>
+      <td style="text-align: right">Pyruvaye oxidation</td>
+      <td style="text-align: right">2 NADH</td>
+      <td style="text-align: right">5 ATP</td>
+    </tr>
+    <tr>
+      <td style="text-align: right">Citric acid cycle</td>
+      <td style="text-align: right">2 ATP           |</td>
+      <td style="text-align: right"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: right">^^</td>
+      <td style="text-align: right">6 NADH</td>
+      <td style="text-align: right">15 ATP</td>
+    </tr>
+    <tr>
+      <td style="text-align: right">^^</td>
+      <td style="text-align: right">2 FADH</td>
+      <td style="text-align: right">3 ATP</td>
+    </tr>
+    <tr>
+      <td style="text-align: right">30–32 ATP                         ||</td>
+      <td style="text-align: right"> </td>
+      <td style="text-align: right"> </td>
+    </tr>
+  </tbody>
+</table>
+
+<p>[ Net ATP yields per hexose]</p>
+
+<h3 id="multiline">Multiline</h3>
+<p>A backslash at end to join cell contents with the following lines.<br />
+This feature is contributed by <a href="https://github.com/Lucas-C">Lucas-C</a>.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left">:     Easy Multiline     :||</th>
+      <th style="text-align: left"> </th>
+      <th style="text-align: left"> </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left">Apple</td>
+      <td style="text-align: left">Banana</td>
+      <td style="text-align: left">Orange  \</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">Apple</td>
+      <td style="text-align: left">Banana</td>
+      <td style="text-align: left">Orange  \</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">Apple</td>
+      <td style="text-align: left">Banana</td>
+      <td style="text-align: left">Orange</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">Apple</td>
+      <td style="text-align: left">Banana</td>
+      <td style="text-align: left">Orange  \</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">Apple</td>
+      <td style="text-align: left">Banana</td>
+      <td style="text-align: left">Orange</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">Apple</td>
+      <td style="text-align: left">Banana</td>
+      <td style="text-align: left">Orange</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="headerless">Headerless</h3>
+<p>Table header can be eliminated.</p>
+
+<table>
+  <tbody>
+    <tr>
+      <td>♜</td>
+      <td> </td>
+      <td>♝</td>
+      <td>♛</td>
+      <td>♚</td>
+      <td>♝</td>
+      <td>♞</td>
+      <td>♜</td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td>♟</td>
+      <td>♟</td>
+      <td>♟</td>
+      <td> </td>
+      <td>♟</td>
+      <td>♟</td>
+      <td>♟</td>
+    </tr>
+    <tr>
+      <td>♟</td>
+      <td> </td>
+      <td>♞</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td>♗</td>
+      <td> </td>
+      <td> </td>
+      <td>♟</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td>♙</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td>♘</td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>♙</td>
+      <td>♙</td>
+      <td>♙</td>
+      <td>♙</td>
+      <td> </td>
+      <td>♙</td>
+      <td>♙</td>
+      <td>♙</td>
+    </tr>
+    <tr>
+      <td>♖</td>
+      <td>♘</td>
+      <td>♗</td>
+      <td>♕</td>
+      <td>♔</td>
+      <td> </td>
+      <td> </td>
+      <td>♖</td>
+    </tr>
+  </tbody>
+</table>
+
+<div class="language-markdown highlighter-rouge"><div class="highlight"><pre class="highlight"><code>|:     Fruits <span class="se">\|\|</span> Food           :|||
+|:-------- |:-------- |:------------ |
+| Apple    |: Apple  :|    Apple     <span class="err">\</span>
+| Banana   |  Banana  |    Banana    <span class="err">\</span>
+| Orange   |  Orange  |    Orange    |
+|:   Rowspan is 5   :||:  How's it? :|
+|^^   A. Peach       ||^^ 1. Fine    |
+|^^   B. Orange      ||^^ 2. Bad  $I = <span class="se">\i</span>nt <span class="se">\r</span>ho R^{2} dV$     |
+|^^   C. Banana      ||   It's OK! !<span class="p">[</span><span class="nv">example image</span><span class="p">][</span><span class="ss">my-image</span><span class="p">]</span>  |
+</code></pre></div></div>
+
+<h3 id="text-alignment">Text Alignment</h3>
+<p>Table cell can be set alignment separately.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left">\:Fruits         |</th>
+      <th style="text-align: left">Food   :</th>
+      <th style="text-align: left"> </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left">Apple</td>
+      <td style="text-align: left">Banana</td>
+      <td style="text-align: left">Orange</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">Apple</td>
+      <td style="text-align: left">Banana</td>
+      <td style="text-align: left">Orange</td>
+    </tr>
+  </tbody>
+</table>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left"> </th>
+      <th style="text-align: left">Fruits\::        |</th>
+      <th style="text-align: left"> </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left">Apple</td>
+      <td style="text-align: left">Banana</td>
+      <td style="text-align: left">Orange</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">Apple</td>
+      <td style="text-align: left">Banana</td>
+      <td style="text-align: left">Orange</td>
+    </tr>
+  </tbody>
+</table>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left">: \:Fruits       :|</th>
+      <th style="text-align: left"> </th>
+      <th style="text-align: left">:       Food     :|</th>
+      <th style="text-align: left"> </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left">Apple</td>
+      <td style="text-align: left">Banana</td>
+      <td style="text-align: left">Orange</td>
+      <td style="text-align: left">:   Strawberry    :</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">Apple  &amp;  Banana |</td>
+      <td style="text-align: left">^^</td>
+      <td style="text-align: left">Peach        :|</td>
+      <td style="text-align: left"> </td>
+    </tr>
+  </tbody>
+</table>
+
+<table>
+  <tbody>
+    <tr>
+      <td>: \:Fruits       :|</td>
+      <td> </td>
+      <td>:       Food     :|</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Apple</td>
+      <td>Banana</td>
+      <td>Orange</td>
+      <td>:   Strawberry    :</td>
+    </tr>
+  </tbody>
+</table>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left">:     Fruits || Food           :||</th>
+      <th style="text-align: left"> </th>
+      <th style="text-align: left"> </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left">Apple</td>
+      <td style="text-align: left">: Apple  :</td>
+      <td style="text-align: left">Apple     \</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">Banana</td>
+      <td style="text-align: left">Banana</td>
+      <td style="text-align: left">Banana    \</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">Orange</td>
+      <td style="text-align: left">Orange</td>
+      <td style="text-align: left">Orange</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">:   Rowspan is 5   :|</td>
+      <td style="text-align: left">:  How’s it? :</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">^^   A. Peach       |</td>
+      <td style="text-align: left">^^ 1. Fine</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">^^   B. Orange      |</td>
+      <td style="text-align: left">^^ 2. Bad  $I = \int \rho R^{2} dV$</td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">^^   C. Banana      |</td>
+      <td style="text-align: left">It’s OK! ![example image](http://www.unexpected-vortices.com/sw/rippledoc/example-image.jpg "An exemplary image")</td>
+      <td style="text-align: left"> </td>
+    </tr>
+  </tbody>
+</table>]]></content><author><name>니리테</name></author><category term="example" /><category term="table" /><summary type="html"><![CDATA[Table example as below]]></summary></entry><entry><title type="html">Mermaid example</title><link href="/jekyll-theme-yat/example/2017/12/08/mermaid-example.html" rel="alternate" type="text/html" title="Mermaid example" /><published>2017-12-08T00:00:00+00:00</published><updated>2017-12-08T00:00:00+00:00</updated><id>/jekyll-theme-yat/example/2017/12/08/mermaid-example</id><content type="html" xml:base="/jekyll-theme-yat/example/2017/12/08/mermaid-example.html"><![CDATA[<h3 id="1-pie-chart">1. Pie chart</h3>
+
+<p><img class="mermaid" src="https://mermaid.ink/svg/eyJjb2RlIjoicGllIHRpdGxlIFBldHMgYWRvcHRlZCBieSB2b2x1bnRlZXJzXG5cIkRvZ3NcIiA6IDM4NlxuXCJDYXRzXCIgOiA4NVxuXCJSYXRzXCIgOiAzNSIsIm1lcm1haWQiOm51bGx9" /></p>
+
+<h3 id="2-sequence-diagram">2. sequence diagram</h3>
+
+<p><img class="mermaid" src="https://mermaid.ink/svg/eyJjb2RlIjoic2VxdWVuY2VEaWFncmFtXG5BbGljZSAtPj4gQm9iOiBIZWxsbyBCb2IsIGhvdyBhcmUgeW91P1xuQm9iLS0-PkpvaG46IEhvdyBhYm91dCB5b3UgSm9obj9cbkJvYi0teCBBbGljZTogSSBhbSBnb29kIHRoYW5rcyFcbkJvYi14IEpvaG46IEkgYW0gZ29vZCB0aGFua3MhXG5Ob3RlIHJpZ2h0IG9mIEpvaG46IEJvYiB0aGlua3MgYSBsb25nPGJyLz5sb25nIHRpbWUsIHNvIGxvbmc8YnIvPnRoYXQgdGhlIHRleHQgZG9lczxici8-bm90IGZpdCBvbiBhIHJvdy5cbiUlLVxuQm9iLS0-QWxpY2U6IENoZWNraW5nIHdpdGggSm9obi4uLlxuQWxpY2UtPkpvaG46IFllcy4uLiBKb2huLCBob3cgYXJlIHlvdT8iLCJtZXJtYWlkIjpudWxsfQ" /></p>
+
+<p><img class="mermaid" src="https://mermaid.ink/svg/eyJjb2RlIjoiZ3JhcGggVERcbkFbQ2hyaXN0bWFzXSAtLT58R2V0IG1vbmV5fCBCKEdvIHNob3BwaW5nKVxuQiAtLT4gQ3tMZXQgbWUgdGhpbmt9XG5DIC0tPnxPbmV8IERbTGFwdG9wXVxuQyAtLT58VHdvfCBFW2lQaG9uZV1cbkMgLS0-fFRocmVlfCBGW2ZhOmZhLWNhciBDYXJdIiwibWVybWFpZCI6bnVsbH0" /></p>
+
+<h3 id="3-class-diagram">3. Class diagram</h3>
+<p><img class="mermaid" src="https://mermaid.ink/svg/eyJjb2RlIjoiY2xhc3NEaWFncmFtXG5BbmltYWwgPHwtLSBEdWNrXG5BbmltYWwgPHwtLSBGaXNoXG5BbmltYWwgPHwtLSBaZWJyYVxuQW5pbWFsIDogK2ludCBhZ2VcbkFuaW1hbCA6ICtTdHJpbmcgZ2VuZGVyXG5BbmltYWw6ICtpc01hbW1hbCgpXG5BbmltYWw6ICttYXRlKClcbmNsYXNzIER1Y2t7XG4rU3RyaW5nIGJlYWtDb2xvclxuK3N3aW0oKVxuK3F1YWNrKClcbn1cbmNsYXNzIEZpc2h7XG4taW50IHNpemVJbkZlZXRcbi1jYW5FYXQoKVxufVxuY2xhc3MgWmVicmF7XG4rYm9vbCBpc193aWxkXG4rcnVuKClcbn0iLCJtZXJtYWlkIjpudWxsfQ" /></p>
+
+<h3 id="4-state-diagram">4. State diagram</h3>
+<p><img class="mermaid" src="https://mermaid.ink/svg/eyJjb2RlIjoic3RhdGVEaWFncmFtXG5bKl0gLS0-IFN0aWxsXG5TdGlsbCAtLT4gWypdXG4lJS1cblN0aWxsIC0tPiBNb3Zpbmdcbk1vdmluZyAtLT4gU3RpbGxcbk1vdmluZyAtLT4gQ3Jhc2hcbkNyYXNoIC0tPiBbKl0iLCJtZXJtYWlkIjpudWxsfQ" /></p>]]></content><author><name>니리테</name></author><category term="example" /><category term="mermaid" /><summary type="html"><![CDATA[1. Pie chart]]></summary></entry><entry><title type="html">Plantuml example</title><link href="/jekyll-theme-yat/example/2017/12/04/plantuml-example.html" rel="alternate" type="text/html" title="Plantuml example" /><published>2017-12-04T00:00:00+00:00</published><updated>2017-12-04T00:00:00+00:00</updated><id>/jekyll-theme-yat/example/2017/12/04/plantuml-example</id><content type="html" xml:base="/jekyll-theme-yat/example/2017/12/04/plantuml-example.html"><![CDATA[<h2 id="my-first-plantuml">My First PlantUML</h2>
+
+<h3 id="plantuml-block-1">PlantUML Block-1</h3>
+<p><img class="plantuml" src="http://www.plantuml.com/plantuml/svg/~h407374617274756d6c0a426f62202d3e20416c696365203a2068656c6c6f0a40656e64756d6c" /></p>
+
+<h3 id="plantuml-block-2">PlantUML Block-2</h3>
+<p><img class="plantuml" src="http://www.plantuml.com/plantuml/svg/~h407374617274756d6c0a426f62202d3e20416c696365203a2068656c6c6f20776f726c640a40656e64756d6c" /></p>
+
+<h3 id="plantuml-block-3">PlantUML Block-3</h3>
+<p><img class="plantuml" src="http://www.plantuml.com/plantuml/svg/~h407374617274756d6c0a282a29202d2d3e2022496e697469616c697a6174696f6e220a0a69662022536f6d65205465737422207468656e0a20202d2d3e5b747275655d2022536f6d65204163746976697479220a20202d2d3e2022416e6f74686572206163746976697479220a20202d72696768742d3e20282a290a656c73650a20202d3e5b66616c73655d2022536f6d657468696e6720656c7365220a20202d2d3e5b456e64696e672070726f636573735d20282a290a656e6469660a40656e64756d6c" /></p>
+
+<h3 id="plantuml-block-4">PlantUML Block-4</h3>
+
+<p><img class="plantuml" src="http://www.plantuml.com/plantuml/svg/~h407374617274756d6c0a736b696e706172616d2068616e647772697474656e20747275650a0a736b696e706172616d2075736563617365207b0a20204261636b67726f756e64436f6c6f72204461726b536561477265656e0a2020426f72646572436f6c6f72204461726b536c617465477261790a0a20204261636b67726f756e64436f6c6f723c3c204d61696e203e3e2059656c6c6f77477265656e0a2020426f72646572436f6c6f723c3c204d61696e203e3e2059656c6c6f77477265656e0a0a20204172726f77436f6c6f72204f6c6976650a20204163746f72426f72646572436f6c6f7220626c61636b0a20204163746f72466f6e744e616d6520436f75726965720a0a20204163746f724261636b67726f756e64436f6c6f723c3c2048756d616e203e3e20476f6c640a7d0a0a55736572203c3c2048756d616e203e3e0a3a4d61696e2044617461626173653a206173204d7953716c203c3c204170706c69636174696f6e203e3e0a28537461727429203c3c204f6e652053686f74203e3e0a2855736520746865206170706c69636174696f6e29206173202855736529203c3c204d61696e203e3e0a0a55736572202d3e20285374617274290a55736572202d2d3e2028557365290a0a4d7953716c202d2d3e2028557365290a0a40656e64756d6c" /></p>]]></content><author><name>니리테</name></author><category term="example" /><category term="plantuml" /><summary type="html"><![CDATA[My First PlantUML]]></summary></entry><entry><title type="html">Quick markdown example</title><link href="/jekyll-theme-yat/markdown/2017/06/10/quick-mardown-example.html" rel="alternate" type="text/html" title="Quick markdown example" /><published>2017-06-10T00:00:00+00:00</published><updated>2017-06-10T00:00:00+00:00</updated><id>/jekyll-theme-yat/markdown/2017/06/10/quick-mardown-example</id><content type="html" xml:base="/jekyll-theme-yat/markdown/2017/06/10/quick-mardown-example.html"><![CDATA[<p><img src="https://github.com/jeffreytse/jekyll-theme-yat/assets/9413601/2ed22d49-90b1-4f7e-8e8f-b77b21dee505" alt="banner" /></p>
+
+<p>Paragraphs are separated by a blank line.</p>
+
+<p>2nd paragraph. <em>Italic</em>, <strong>bold</strong>, and <code class="language-plaintext highlighter-rouge">monospace</code>. Itemized lists
+look like:</p>
+
+<ul>
+  <li>this one</li>
+  <li>that one</li>
+  <li>the other one</li>
+</ul>
+
+<p>Note that — not considering the asterisk — the actual text
+content starts at 4-columns in.</p>
+
+<blockquote>
+  <p>Block quotes are
+written like so.</p>
+
+  <p>They can span multiple paragraphs,
+if you like.</p>
+</blockquote>
+
+<p>Use 3 dashes for an em-dash. Use 2 dashes for ranges (ex., “it’s all
+in chapters 12–14”). Three dots … will be converted to an ellipsis.
+Unicode is supported. ☺</p>
+
+<h2 id="an-h2-header">An h2 header</h2>
+
+<p>Here’s a numbered list:</p>
+
+<ol>
+  <li>first item</li>
+  <li>second item</li>
+  <li>third item</li>
+</ol>
+
+<p>Note again how the actual text starts at 4 columns in (4 characters
+from the left side). Here’s a code sample:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code># Let me re-iterate ...
+for i in 1 .. 10 { do-something(i) }
+</code></pre></div></div>
+
+<p>As you probably guessed, indented 4 spaces. By the way, instead of
+indenting the block, you can use delimited blocks, if you like:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>define foobar() {
+    print "Welcome to flavor country!";
+}
+</code></pre></div></div>
+
+<p>(which makes copying &amp; pasting easier). You can optionally mark the
+delimited block for Pandoc to syntax highlight it:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="n">time</span>
+<span class="c1"># Quick, count to ten!
+</span><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nf">range</span><span class="p">(</span><span class="mi">10</span><span class="p">):</span>
+    <span class="c1"># (but not *too* quick)
+</span>    <span class="n">time</span><span class="p">.</span><span class="nf">sleep</span><span class="p">(</span><span class="mf">0.5</span><span class="p">)</span>
+    <span class="nf">print</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+</code></pre></div></div>
+
+<h3 id="an-h3-header">An h3 header</h3>
+
+<p>Now a nested list:</p>
+
+<ol>
+  <li>
+    <p>First, get these ingredients:</p>
+
+    <ul>
+      <li>carrots</li>
+      <li>celery</li>
+      <li>lentils</li>
+    </ul>
+  </li>
+  <li>
+    <p>Boil some water.</p>
+  </li>
+  <li>
+    <p>Dump everything in the pot and follow
+this algorithm:</p>
+
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>find wooden spoon
+uncover pot
+stir
+cover pot
+balance wooden spoon precariously on pot handle
+wait 10 minutes
+goto first step (or shut off burner when done)
+</code></pre></div>    </div>
+
+    <p>Do not bump wooden spoon or it will fall.</p>
+  </li>
+</ol>
+
+<p>Notice again how text always lines up on 4-space indents (including
+that last line which continues item 3 above).</p>
+
+<p>Here’s a link to <a href="http://foo.bar">a website</a>, to a <a href="local-doc.html">local
+doc</a>, and to a <a href="#an-h2-header">section heading in the current
+doc</a>. Here’s a footnote <sup id="fnref:1" role="doc-noteref"><a href="#fn:1" class="footnote" rel="footnote">1</a></sup>.</p>
+
+<p>Tables can look like this:</p>
+
+<p>Name           Size  Material      Color
+————- —–  ————  ————
+All Business      9  leather       brown
+Roundabout       10  hemp canvas   natural
+Cinderella       11  glass         transparent</p>
+
+<p>Table: Shoes sizes, materials, and colors.</p>
+
+<p>(The above is the caption for the table.) Pandoc also supports
+multi-line tables:</p>
+
+<hr />
+<p>Keyword   Text
+——–  ———————–
+red       Sunsets, apples, and
+          other red or reddish
+          things.</p>
+
+<p>green     Leaves, grass, frogs
+          and other things it’s
+          not easy being.
+——–  ———————–</p>
+
+<p>A horizontal rule follows.</p>
+
+<hr />
+
+<p>Here’s a definition list:</p>
+
+<dl>
+  <dt>apples</dt>
+  <dd>Good for making applesauce.</dd>
+  <dt>oranges</dt>
+  <dd>Citrus!</dd>
+  <dt>tomatoes</dt>
+  <dd>There’s no “e” in tomatoe.</dd>
+</dl>
+
+<p>Again, text is indented 4 spaces. (Put a blank line between each
+term and  its definition to spread things out more.)</p>
+
+<p>Here’s a “line block” (note how whitespace is honored):</p>
+
+<table>
+  <tbody>
+    <tr>
+      <td>Line one</td>
+    </tr>
+    <tr>
+      <td>Line too</td>
+    </tr>
+    <tr>
+      <td>Line tree</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>and images can be specified like so:</p>
+
+<p><img src="https://user-images.githubusercontent.com/9413601/123900693-1d9ebd00-d99c-11eb-8e9e-cf7879187606.png" alt="example image" title="An exemplary image" /></p>
+
+<p>Inline math equation: $\omega = d\phi / dt$. Display
+math should get its own line like so:</p>
+
+<p>$$I = \int \rho R^{2} dV$$</p>
+
+<p>And note that you can backslash-escape any punctuation characters
+which you wish to be displayed literally, ex.: `foo`, *bar*, etc.</p>
+<div class="footnotes" role="doc-endnotes">
+  <ol>
+    <li id="fn:1" role="doc-endnote">
+      <p>Some footnote text. <a href="#fnref:1" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
+    </li>
+  </ol>
+</div>]]></content><author><name>니리테</name></author><category term="markdown" /><category term="example" /><summary type="html"><![CDATA[]]></summary></entry></feed>
